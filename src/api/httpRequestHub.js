@@ -2,6 +2,7 @@
 import axios from "axios";
 
 export const BASE_URL = 'https://emailbackend-production.up.railway.app';
+// export const BASE_URL = 'http://localhost:8000';
 
 export const HttpRequestHub = (config = null) => {
     let headers = {

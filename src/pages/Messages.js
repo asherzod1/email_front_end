@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Button, Form, Input, message, Select} from "antd";
+import {AutoComplete, Button, Form, Input, message, Select} from "antd";
 import {createUser, getUsers} from "../api/config/user";
 import {createMessage, getUserMessages} from "../api/config/message";
 import {useNavigate} from "react-router-dom";
@@ -46,7 +46,7 @@ function Messages(props) {
             const response = await getUsers();
             setAllUsers(response.data.map(item=>({
                 label: item.name,
-                value: item.id
+                value: item.name
             })))
         }
         catch (error) {
@@ -110,17 +110,17 @@ function Messages(props) {
                                         },
                                     ]}
                                 >
-                                    <Select
-                                        showSearch
+                                    <AutoComplete
                                         placeholder="Search to Select"
                                         optionFilterProp="children"
                                         filterOption={(input, option) => (option?.label ?? '').includes(input)}
                                         filterSort={(optionA, optionB) =>
                                             (optionA?.label ?? '').toLowerCase().localeCompare((optionB?.label ?? '').toLowerCase())
                                         }
+
                                         options={allUsers}
                                     >
-                                    </Select>
+                                    </AutoComplete>
                                 </Form.Item>
                                 <Form.Item
                                     label="Title"
